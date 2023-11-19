@@ -1,0 +1,79 @@
+.mainBg {
+    background: url(./Wallaper.jpg);
+    background-size: cover;
+    height: 100vh !important;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  .Bg-color {
+    flex-direction: column !important;
+    height: auto;
+    padding: 10px;
+    margin: 0 auto;
+    border: 1px solid black;
+    height: auto;
+    width:370px;
+    border-radius: 20px !important;
+    box-shadow: 14px 11px 15px 0px rgb(255, 254, 254);
+  }
+  .headings {
+    color: #1f2833;
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
+  .register-new {
+    /* margin-left: -8px; */
+    color: #1f2833;
+    font-size: 14px;
+    /* border: 1px solid black; */
+  }
+  .Reg {
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid black; */
+  }
+  .button-Bg {
+    background-color: #966e33f3 !important;
+    color: #fdfdfdc9 !important;
+    margin-left: 10px !important;
+    border: 1px solid #fdfdfdc9 !important;
+  }
+  .forget-password {
+    font-size: smaller;
+    color: #1f2833;
+    cursor: pointer;
+    margin-top: -15px !important;
+  }
+  .forget-password:hover {
+    color: #966e33e7;
+  }
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column !important;
+    width: 370px;
+   
+    /* border: 1px solid black; */
+  }
+ 
+  @media screen and (max-width: 768px) {
+    .mainBg {
+        background: url(./Wallaper.jpg);
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        height: 100vh !important;
+        box-sizing: border-box !important;
+      }
+    .Bg-color {
+        padding: 1px;
+        margin: 0 auto;
+        width:auto !important;
+      }
+      .form {
+        padding: 10px;
+        width: auto !important;
+        /* border: 1px solid black; */
+      }
+
+  }
