@@ -1,8 +1,7 @@
-.marked{
+.marked {
   position: absolute !important;
   top: 25 !important;
   right: 150 !important;
-
 }
 .main-component {
   display: flex;
@@ -18,15 +17,28 @@
   color: #ffffff;
   margin-top: 0px;
 }
-.Select-menu{
+.Select-menu {
   display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    left: 150px;
-    top: -20px;
-    /* width: 620px; */
-    margin-left: 30px;
-    border: 1px solid black;
-    /* z-index: -1; */
-  }
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  left: 150px;
+  top: -20px;
+  margin-left: 30px;
+  /* border: 1px solid black; */
+}
+.addNew {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: rgb(79, 79, 79);
+  position: relative;
+  padding: 0%;
+  margin: 0 10%;
+}

@@ -20,6 +20,8 @@ import { ListItemIcon, MenuItem } from '@mui/material';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+
 const APP_ID = "ee0d21a7";
 const APP_KEY = "4831551cfab603988f9e808f06b62411";
 const DashBoard = () => {
@@ -29,6 +31,8 @@ const DashBoard = () => {
     const toggleMenu = () => {
       setMenuOpen(!menuOpen);
     };
+
+
     const [searchQuery, updateSearchQuery] = useState("");
   const [recipeList, updateRecipeList] = useState([]);
   const [timeoutId, updateTimeoutId] = useState();

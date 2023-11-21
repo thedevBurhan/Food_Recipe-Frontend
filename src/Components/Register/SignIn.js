@@ -65,7 +65,7 @@ const Register = () => {
   // fetch
   const handleSignIn = async (userInfo) => {
     const res = await fetch(
-      `https://addtastetoyourfood.vercel.app/users/signup`,
+      `https://addtastetoyourfoods.onrender.com/users/signup`,
       {
         method: "POST",
         body: JSON.stringify(userInfo),

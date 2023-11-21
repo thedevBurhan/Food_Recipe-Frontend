@@ -7,6 +7,8 @@ import {
   RecipeListContainer,
   Placeholder,
 } from "../../Base/DashBoardcss.js";
+import "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, ListItemIcon } from "@mui/material";
 import RecipeComponent from "../../Base/RecipeComponent.js";
 import MenuIcon from "@mui/icons-material/Menu";
 import PublicIcon from "@mui/icons-material/Public";
@@ -14,15 +16,18 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import {
-  FormControl,
-  InputLabel,
-  ListItemIcon,
-  MenuItem,
-  Select,
-} from "@mui/material";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+import {
+
+  IngredientsText,
+  SeeMoreText,
+  RecipeName,
+  CoverImage,
+ 
+} from "../../Base/RecipeComponentcss.js";
+
 
 const Users = () => {
   const history = useHistory();
@@ -32,6 +37,8 @@ const Users = () => {
   const [personName, setPersonName] = useState([]);
   const [transData, setTransData] = useState([]);
   const [datas, setDatas] = useState({});
+
+ 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -48,7 +55,7 @@ const Users = () => {
   const getallUserData = async () => {
     try {
       let req = await axios.get(
-        `https://addtastetoyourfood.vercel.app/users/all`
+        `https://addtastetoyourfoods.onrender.com/users/all`
       );
       const { data } = req.data;
       if (data && data.length > 0) {
@@ -89,7 +96,7 @@ const getRecipeData = async () => {
   
   
       let req = await axios.get(
-        `https://addtastetoyourfood.vercel.app/recipe/specificUser/${selectedUserKey}`,
+        `https://addtastetoyourfoods.onrender.com/recipe/specificUser/${selectedUserKey}`,
         {
           headers: {
             authtoken: window.localStorage.getItem("token"),
@@ -98,6 +105,7 @@ const getRecipeData = async () => {
       );
   
       const { data } = req;
+      // console.log("Retrieved data:", data);
       const { message, statusCode, allRecipeData } = data;
     //   console.log("data:", data);
       if(allRecipeData.length<=0){
@@ -123,7 +131,9 @@ const getRecipeData = async () => {
     }
   };
   
-
+  // console.log("personName:", personName);
+  // console.log("type:", type);
+  // console.log("transData:", transData);
   return (
     <div>
       <Container>
@@ -217,6 +227,26 @@ const getRecipeData = async () => {
           <Placeholder src="/react-recipe-finder/RecipeLogo.png" />
         )}
       </RecipeListContainer>
+      
+
+      {/* <CoverImage
+        src={imageURL}
+        alt={label}
+        style={{
+          objectFit: "cover",
+          height: "200px",
+          borderRadius: "15px"
+        }}
+      />
+
+      <RecipeName>{label}</RecipeName>
+      <IngredientsText onClick={() => setShow(!show)}>
+        Ingredients
+      </IngredientsText>
+      <SeeMoreText onClick={() => window.open("https://www.youtube.com/")}>
+        See Complete Recipe
+      </SeeMoreText>
+     */}
     </div>
   );
 };

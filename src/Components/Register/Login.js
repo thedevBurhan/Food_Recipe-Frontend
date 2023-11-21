@@ -67,7 +67,7 @@ const Login = () => {
   const handleLogin = async (userInfo) => {
     // console.log(userInfo)
     const res = await fetch(
-      `https://addtastetoyourfood.vercel.app/users/login`,
+      `https://addtastetoyourfoods.onrender.com/users/login`,
       {
         method: "POST",
         body: JSON.stringify(userInfo),

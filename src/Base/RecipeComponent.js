@@ -88,7 +88,7 @@ const handleBookmarkClick = (e) => {
       e.preventDefault();
       try {
         let req = await axios.post(
-          `https://addtastetoyourfood.vercel.app/recipe/`,
+          `https://addtastetoyourfoods.onrender.com/recipe/`,
           {
             userid: window.localStorage.getItem("id"),
             updatedBookmarkedRecipes
@@ -149,8 +149,8 @@ const handleBookmarkClick = (e) => {
                   <TableRow sx={{ backgroundColor: "#9b9e9c" }}>
                     <TableCell align="center">Ingredient</TableCell>
                     <TableCell align="right">Category</TableCell>
-                    <TableCell align="right">Food</TableCell>
-                    <TableCell align="right">Quantity</TableCell>
+                    <TableCell align="right">Weight&nbsp;(g)</TableCell>
+                    <TableCell align="right">Quantity&nbsp;(g)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -165,7 +165,7 @@ const handleBookmarkClick = (e) => {
                         <TableCell align="right">
                           {ingredient.foodCategory}
                         </TableCell>
-                        <TableCell align="right">{ingredient.food}</TableCell>
+                        <TableCell align="right">{ingredient.weight}</TableCell>
                         <TableCell align="right">
                           {ingredient.quantity}
                         </TableCell>
@@ -187,7 +187,7 @@ const handleBookmarkClick = (e) => {
         {marked ? (
           <BookmarkIcon
             className="marked"
-            sx={{ fontSize: "30px", color: "#f55feb" }}
+            sx={{ fontSize: "28px", color: "#8ac8f8" }}
             onClick={handleBookmarkClickonChange}
           />
         ) : (

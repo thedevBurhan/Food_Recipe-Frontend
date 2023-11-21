@@ -15,27 +15,27 @@ const CoverImage = styled.img`
 const RecipeName = styled.span`
 display: flex;
 flex-direction: column;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: black;
   margin: 10px 0;
-  
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: Lato ;
+ 
 `;
 const SeeMoreText = styled.span`
-  color: #c428eb;
-  font-size: 16px;
+  
+  font-size: 14px;
   text-align: center;
   border-radius: 10px;
-  padding: 8px 15px;
-  font-family: Lato ;
+  padding: 4px 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   cursor: pointer;
 `;
 const IngredientsText = styled(SeeMoreText)`
-  color: #eb28de;
+  color: #2a9df4;
 `;
 const SeeNewTab = styled(SeeMoreText)`
   color: green;
