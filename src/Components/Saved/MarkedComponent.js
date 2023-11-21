@@ -3,7 +3,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
-
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Paper,
@@ -25,18 +24,21 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+
 const MarkedComponent = (props) => {
   // console.log(props)
   const [recipeData, setRecipeData] = useState([]);
   const [datas, setDatas] = useState({});
   const [show, setShow] = useState("");
   const { label, image, ingredients, calories, totalTime } = props.recipe;
- // Check if image exists before destructuring its properties
-const { destination, filename } = image || {};
-const filenames = filename ? filename.split(',') : [];
-const displayFilename = filenames.length > 0 ? filenames[0] : '';
+  // Check if image exists before destructuring its properties
+  const { destination, filename } = image || {};
+  const filenames = filename ? filename.split(",") : [];
+  const displayFilename = filenames.length > 0 ? filenames[0] : "";
 
-const imageURL = `https://addtastetoyourfoods.onrender.com/${destination || ''}${displayFilename}`;
+  const imageURL = `https://addtastetoyourfoods.onrender.com/${
+    destination || ""
+  }${displayFilename}`;
 
   // for alert----------
   // alert Function
@@ -170,7 +172,7 @@ const imageURL = `https://addtastetoyourfoods.onrender.com/${destination || ''}$
         style={{
           objectFit: "cover",
           height: "200px",
-          borderRadius: "15px"
+          borderRadius: "15px",
         }}
       />
 

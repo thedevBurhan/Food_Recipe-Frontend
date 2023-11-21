@@ -197,12 +197,12 @@ const Login = () => {
                     Login
                   </Button>
                   <Button
-                  className="button-Bg"
-                  onClick={() => history.push("/SignIn")}
-                  variant="outlined"
-                >
-                  Register
-                </Button>
+                    className="button-Bg"
+                    onClick={() => history.push("/SignIn")}
+                    variant="outlined"
+                  >
+                    Register
+                  </Button>
                 </div>
               </form>
             </Card>

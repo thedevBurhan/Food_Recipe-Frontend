@@ -28,94 +28,119 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import axios from "axios";
+
 const RecipeComponent = (props) => {
   const [marked, setMarked] = useState(false);
   // Ensure that bookmarkedRecipes is always an array
   const [bookmarkedRecipes, setBookmarkedRecipes] = useState([]);
   const [show, setShow] = useState("");
   const { label, image, ingredients, url, calories, totalTime } = props.recipe;
-//  alert Function
-const Toast = Swal.mixin({
-  toast: true,
-  position: "top",
-  showConfirmButton: false,
-  timer: 2000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener("mouseenter", Swal.stopTimer);
-    toast.addEventListener("mouseleave", Swal.resumeTimer);
-  },
-});
-const handleBookmarkClick = (e) => {
-  const isBookmarked = bookmarkedRecipes.some(
-    (recipe) => recipe.label === label
-  );
+  //  alert Function
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+  const handleBookmarkClick = (e) => {
+    const isBookmarked = bookmarkedRecipes.some(
+      (recipe) => recipe.label === label
+    );
 
-  if (!isBookmarked) {
-    setBookmarkedRecipes((prevBookmarkedRecipes) => [
-      ...prevBookmarkedRecipes,
-      { label, ingredients, image, url, calories, totalTime },
-    ]);
-    toast.success("😁❤️ Added to your Bookmark!", {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
+    if (!isBookmarked) {
+      setBookmarkedRecipes((prevBookmarkedRecipes) => [
+        ...prevBookmarkedRecipes,
+        { label, ingredients, image, url, calories, totalTime },
+      ]);
+      toast.success("😁❤️ Added to your Bookmark!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    setMarked(!isBookmarked);
+
+    // Pass the updated bookmarked recipes directly to setBookmarkedRecipes
+    setBookmarkedRecipes((prevBookmarkedRecipes) => {
+      localStorage.setItem(
+        "bookmarkedRecipes",
+        JSON.stringify(prevBookmarkedRecipes)
+      );
+      return prevBookmarkedRecipes;
+    });
+
+    const storedBookmarkedRecipes = localStorage.getItem("bookmarkedRecipes");
+    const parsedBookmarkedRecipes = storedBookmarkedRecipes
+      ? JSON.parse(storedBookmarkedRecipes)
+      : [];
+    // Pass the event, updatedBookmarkedRecipes, and ingredients to addRecipe
+    
+    console.log("parsedBookmarkedRecipes",parsedBookmarkedRecipes,"ingredients",ingredients)
+    addRecipe(e,label, image, calories, totalTime, ingredients);
+  };
+
+  // to add the Recipe data
+  const addRecipe = async (e,label, image, calories, totalTime, ingredients) => {
+    e.preventDefault();
+    // console.log(window.localStorage.getItem("id"));
+    console.log(label, calories, totalTime, image,ingredients);
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("userid", window.localStorage.getItem("id"));
+    formData.append("calories", calories);
+    formData.append("label", label);
+    formData.append("totalTime", totalTime);
+
+    // Check if ingredients is defined before iterating and appending
+  if (ingredients) {
+    ingredients.forEach((ingredient, index) => {
+      formData.append(`ingredients[${index}][measure]`, ingredient.measure);
+      formData.append(`ingredients[${index}][weight]`, ingredient.weight);
+      formData.append(
+        `ingredients[${index}][foodCategory]`,
+        ingredient.foodCategory
+      );
+      formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
+      formData.append(`ingredients[${index}][text]`, ingredient.text);
     });
   }
-  setMarked(!isBookmarked);
-
-  // Pass the updated bookmarked recipes directly to setBookmarkedRecipes
-  setBookmarkedRecipes((prevBookmarkedRecipes) => {
-    window.localStorage.setItem("calories", prevBookmarkedRecipes.calories);
-    window.localStorage.setItem("image", prevBookmarkedRecipes.image);
-    console.log("Bookmarked Recipes:", prevBookmarkedRecipes);
-    return prevBookmarkedRecipes; // Return the updated value
-  });
-
-  // Pass the event and updatedBookmarkedRecipes to addRecipe
-  addRecipe(e, bookmarkedRecipes);
-};
-
-
-    // to add the Recipe data
-    const addRecipe = async (e,updatedBookmarkedRecipes) => {
-      // console.log(window.localStorage.getItem("id"));
-      e.preventDefault();
-      try {
-        let req = await axios.post(
-          `https://addtastetoyourfoods.onrender.com/recipe/`,
-          {
-            userid: window.localStorage.getItem("id"),
-            updatedBookmarkedRecipes
+     console.log("formData",formData)
+     try {
+      const response = await axios.post(
+        `https://addtastetoyourfoods.onrender.com/recipe/`,
+        formData,
+        {
+          headers: {
+            authtoken: window.localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
           },
-          {
-            headers: {
-              authtoken: window.localStorage.getItem("token"),
-            },
-          }
-        );
-        const { data } = req;
-        console.log(data);
-        const { message, statusCode } = data;
-        // console.log(data);
-        if (statusCode === 200) {
-         
-          Toast.fire({ icon: "success", title: message });
-        } else {
-          Toast.fire({
-            icon: "error",
-            title: "Error in adding Transaction Data",
-          });
         }
-      } catch (error) {
-        console.log(error);
+      );
+      const { data } = response;
+      const { message, statusCode } = data;
+
+      if (statusCode === 200) {
+        Toast.fire({ icon: "success", title: message });
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: "Error in adding Recipe Data",
+        });
       }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleBookmarkClickonChange = () => {
     toast.warning("Remove Recipe From Bookmark!", {
       position: "top-right",

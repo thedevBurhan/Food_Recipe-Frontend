@@ -22,34 +22,23 @@ import {
 } from "../../Base/RecipeComponentcss.js";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import Swal from "sweetalert2";
 import { useEffect } from "react";
+
 const Userscomponents = (props) => {
   // console.log(props)
   const [recipeData, setRecipeData] = useState([]);
   const [datas, setDatas] = useState({});
   const [show, setShow] = useState("");
   const { label, image, ingredients, calories, totalTime } = props.recipe;
- // Check if image exists before destructuring its properties
-const { destination, filename } = image || {};
-const filenames = filename ? filename.split(',') : [];
-const displayFilename = filenames.length > 0 ? filenames[0] : '';
+  // Check if image exists before destructuring its properties
+  const { destination, filename } = image || {};
+  const filenames = filename ? filename.split(",") : [];
+  const displayFilename = filenames.length > 0 ? filenames[0] : "";
 
-const imageURL = `https://addtastetoyourfoods.onrender.com/${destination || ''}${displayFilename}`;
+  const imageURL = `https://addtastetoyourfoods.onrender.com/${
+    destination || ""
+  }${displayFilename}`;
 
-  // for alert----------
-  // alert Function
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top",
-    showConfirmButton: false,
-    timer: 2000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
   const getRecipeData = async () => {
     try {
       let y = window.localStorage.getItem("id");
@@ -136,7 +125,7 @@ const imageURL = `https://addtastetoyourfoods.onrender.com/${destination || ''}$
         style={{
           objectFit: "cover",
           height: "200px",
-          borderRadius: "15px"
+          borderRadius: "15px",
         }}
       />
 

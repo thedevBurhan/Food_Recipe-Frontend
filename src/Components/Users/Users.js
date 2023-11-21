@@ -16,14 +16,16 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import Userscomponents from "./userscomponents.js";
+import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import PublicIcon from "@mui/icons-material/Public";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import GroupsIcon from "@mui/icons-material/Groups";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import { toast } from "react-toastify";
+
 const Users = () => {
   const history = useHistory();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -100,7 +102,7 @@ const Users = () => {
       const { data } = req;
       // console.log("Retrieved data:", data);
       const { message, statusCode, allRecipeData } = data;
-        console.log("allRecipeData:", allRecipeData);
+      console.log("allRecipeData:", allRecipeData);
       if (allRecipeData.length <= 0) {
         toast.warning("No Recipe To Be Shown!", {
           position: "top-right",
@@ -123,7 +125,7 @@ const Users = () => {
       console.log(error);
     }
   };
-
+  const user = window.localStorage.getItem("user");
   // console.log("personName:", personName);
   // console.log("type:", type);
   // console.log("transData:", transData);
@@ -142,6 +144,12 @@ const Users = () => {
             onClick={toggleMenu}
           ></MenuIcon>
           <div className={`menu-items ${menuOpen ? "open" : ""}`}>
+            <MenuItem className="menu-item">
+              <ListItemIcon sx={{ color: "#2a9df4" }}>
+                <PersonIcon fontSize="small" />
+              </ListItemIcon>
+              {user}
+            </MenuItem>
             <MenuItem
               className="menu-item"
               onClick={() => history.push("/DashBoard")}
@@ -155,6 +163,7 @@ const Users = () => {
               Global
             </MenuItem>
             <MenuItem
+              disabled
               className="menu-item"
               onClick={() => history.push("/Users")}
             >
@@ -162,7 +171,7 @@ const Users = () => {
                 sx={{ color: "#2a9df4" }}
                 onClick={() => history.push("/Users")}
               >
-                <AccountCircleIcon fontSize="small" />
+                <GroupsIcon fontSize="small" />
               </ListItemIcon>
               Users
             </MenuItem>

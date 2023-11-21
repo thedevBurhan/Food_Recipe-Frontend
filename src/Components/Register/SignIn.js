@@ -80,7 +80,7 @@ const Register = () => {
     console.log(localStorage.setItem("token", data.token));
     handleClick();
   };
- 
+
   const history = useHistory();
   return (
     <div>
@@ -142,27 +142,22 @@ const Register = () => {
                   </div>
                 </CardContent>
                 <div className="Reg">
-                <Button
+                  <Button
                     className="button-Bg"
                     type="submit"
                     variant="outlined"
                   >
                     Register
                   </Button>
-                <Button
-                  className="button-Bg"
-                  onClick={() => history.push("/")}
-                  variant="outlined"
-                >
-                  Login
-                </Button>
-                 
+                  <Button
+                    className="button-Bg"
+                    onClick={() => history.push("/")}
+                    variant="outlined"
+                  >
+                    Login
+                  </Button>
                 </div>
               </form>
-             
-               
-               
-              
             </Card>
             <Snackbar
               open={open}

@@ -10,16 +10,16 @@ import AddRecipe from "./Components/AddNewRecipe/AddNewRecipe.js";
 function App() {
   return (
     <div className="App">
-    <Switch>
-      <Route exact path="/">
-        <Login />
-      </Route>
-      <Route path="/SignIn">
-        <SignIn />
-      </Route>
-      <Route path="/DashBoard">
-        <DashBoard />
-      </Route>
+      <Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="/SignIn">
+          <SignIn />
+        </Route>
+        <Route path="/DashBoard">
+          <DashBoard />
+        </Route>
         <Route path="/Users">
           <Users />
         </Route>

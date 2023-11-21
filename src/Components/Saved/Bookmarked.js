@@ -7,9 +7,10 @@ import {
   RecipeListContainer,
   Placeholder,
 } from "../../Base/DashBoardcss.js";
+import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import PublicIcon from "@mui/icons-material/Public";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import GroupsIcon from "@mui/icons-material/Groups";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -57,7 +58,7 @@ const Bookmarked = () => {
   useEffect(() => {
     getRecipeData();
   }, []);
-
+  const user = window.localStorage.getItem("user");
   return (
     <div>
       <Container>
@@ -73,6 +74,12 @@ const Bookmarked = () => {
             onClick={toggleMenu}
           ></MenuIcon>
           <div className={`menu-items ${menuOpen ? "open" : ""}`}>
+            <MenuItem className="menu-item">
+              <ListItemIcon sx={{ color: "#2a9df4" }}>
+                <PersonIcon fontSize="small" />
+              </ListItemIcon>
+              {user}
+            </MenuItem>
             <MenuItem
               className="menu-item"
               onClick={() => history.push("/DashBoard")}
@@ -93,11 +100,12 @@ const Bookmarked = () => {
                 sx={{ color: "#2a9df4" }}
                 onClick={() => history.push("/Users")}
               >
-                <AccountCircleIcon fontSize="small" />
+                <GroupsIcon fontSize="small" />
               </ListItemIcon>
               Users
             </MenuItem>
             <MenuItem
+              disabled
               className="menu-item"
               onClick={() => history.push("/BookMarked")}
             >

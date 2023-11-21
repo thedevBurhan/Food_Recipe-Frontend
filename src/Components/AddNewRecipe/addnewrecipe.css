@@ -1,70 +1,68 @@
-.add-container{
-    /* border: 1px solid black; */
-    margin:auto ;
-    padding: 10px;
-    display: flex;
-    width: 80%;
-    /* background-color: aqua; */
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.152); */
+.add-container {
+  /* border: 1px solid black; */
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  width: 80%;
+  /* background-color: aqua; */
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.152); */
 }
-.add{
-    display: flex;
-    width: auto;
-    /* border: 1px solid black; */
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+.add {
+  display: flex;
+  width: auto;
+  /* border: 1px solid black; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.addHead{
-    /* border: 1px solid black; */
-    margin-right: 20px;
-    font-style: normal;
-    
+.addHead {
+  /* border: 1px solid black; */
+  margin-right: 20px;
+  font-style: normal;
 }
-.field{
-    /* margin-top: -25px !important; */
-    width: auto;
-    border: 1px solid black;
+.field {
+  /* margin-top: -25px !important; */
+  width: auto;
+  border: 1px solid black;
 }
-.caption{
-    cursor: pointer;
+.caption {
+  cursor: pointer;
 }
-.image{
-    cursor: pointer;
-    /* border: 1px solid black; */
-    margin-top:25px ;
-   width: 190px;
-   
-    margin-right: 10px;
+.image {
+  cursor: pointer;
+  /* border: 1px solid black; */
+  margin-top: 25px;
+  width: 190px;
+
+  margin-right: 10px;
 }
-.buttons{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* border: 1px solid black; */
-    width: 200px;
-    justify-content: center;
-   
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* border: 1px solid black; */
+  width: 200px;
+  justify-content: center;
 }
-.table{
-    min-width:auto;
+.table {
+  min-width: auto;
 }
 .addrecipebg {
-    background-image: url('addrecipe.png');
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  background-image: url("addrecipe.png");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  @media screen and (max-width: 600px) {
-    .addrecipebg {
-        background-image: none;
-    }
+@media screen and (max-width: 600px) {
+  .addrecipebg {
+    background-image: none;
   }
+}

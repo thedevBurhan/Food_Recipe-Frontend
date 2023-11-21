@@ -5,6 +5,7 @@
     position: relative;
     left: 0px;
     margin-left: 30px;
+    
   }
   
   .menu-button {
@@ -27,7 +28,7 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    z-index: 1;
+    z-index: 10;
     /* border: 1px solid black; */
     max-height: 0;
     overflow: hidden;
