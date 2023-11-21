@@ -15,7 +15,7 @@ import {
   MenuItem,
   ListItemIcon,
 } from "@mui/material";
-import RecipeComponent from "../../Base/RecipeComponent.js";
+import Userscomponents from "./userscomponents.js";
 import MenuIcon from "@mui/icons-material/Menu";
 import PublicIcon from "@mui/icons-material/Public";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -24,14 +24,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import { toast } from "react-toastify";
-
-// import {
-//   IngredientsText,
-//   SeeMoreText,
-//   RecipeName,
-//   CoverImage,
-// } from "../../Base/RecipeComponentcss.js";
-
 const Users = () => {
   const history = useHistory();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -222,7 +214,7 @@ const Users = () => {
       <RecipeListContainer>
         {recipeData?.length ? (
           recipeData.map((allRecipeData, index) => (
-            <RecipeComponent key={index} recipe={allRecipeData} />
+            <Userscomponents key={index} recipe={allRecipeData} />
           ))
         ) : (
           <Placeholder src="/react-recipe-finder/RecipeLogo.png" />

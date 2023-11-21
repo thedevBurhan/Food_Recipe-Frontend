@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
-
-import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Paper,
   Table,
@@ -25,7 +23,8 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Swal from "sweetalert2";
-const MarkedComponent = (props) => {
+import { useEffect } from "react";
+const Userscomponents = (props) => {
   // console.log(props)
   const [recipeData, setRecipeData] = useState([]);
   const [datas, setDatas] = useState({});
@@ -71,31 +70,6 @@ const imageURL = `https://addtastetoyourfoods.onrender.com/${destination || ''}$
         // console.log("allRecipeData:", allRecipeData);
       } else {
         setDatas({ message });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // for delete Recipe
-  const delRecipeData = async (id) => {
-    // console.log(id);
-    try {
-      let req = await axios.delete(
-        `https://addtastetoyourfoods.onrender.com/recipe/deleteRecipeData/${id}`,
-        {
-          headers: {
-            authtoken: window.localStorage.getItem("token"),
-          },
-        }
-      );
-      const { data } = req;
-      const { message, statusCode } = data.data;
-      if (statusCode === 200) {
-        getRecipeData();
-        Toast.fire({ icon: "success", title: message });
-      } else {
-        Toast.fire({ icon: "error", title: "Can't delete Recipe Data" });
       }
     } catch (error) {
       console.log(error);
@@ -156,14 +130,6 @@ const imageURL = `https://addtastetoyourfoods.onrender.com/${destination || ''}$
           </DialogActions>
         </div>
       </Dialog>
-      <div>
-        <DeleteIcon
-          className="marked"
-          sx={{ fontSize: "30px", color: "#8ac8f8", float: "left" }}
-          onClick={() => delRecipeData(props.recipe._id)} // Using props.recipe._id
-        />
-      </div>
-
       <CoverImage
         src={imageURL}
         alt={label}
@@ -185,4 +151,4 @@ const imageURL = `https://addtastetoyourfoods.onrender.com/${destination || ''}$
   );
 };
 
-export default MarkedComponent;
+export default Userscomponents;
