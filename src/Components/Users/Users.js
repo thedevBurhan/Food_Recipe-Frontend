@@ -8,7 +8,13 @@ import {
   Placeholder,
 } from "../../Base/DashBoardcss.js";
 import "@mui/material";
-import { FormControl, InputLabel, Select, MenuItem, ListItemIcon } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  ListItemIcon,
+} from "@mui/material";
 import RecipeComponent from "../../Base/RecipeComponent.js";
 import MenuIcon from "@mui/icons-material/Menu";
 import PublicIcon from "@mui/icons-material/Public";
@@ -19,15 +25,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import {
-
-  IngredientsText,
-  SeeMoreText,
-  RecipeName,
-  CoverImage,
- 
-} from "../../Base/RecipeComponentcss.js";
-
+// import {
+//   IngredientsText,
+//   SeeMoreText,
+//   RecipeName,
+//   CoverImage,
+// } from "../../Base/RecipeComponentcss.js";
 
 const Users = () => {
   const history = useHistory();
@@ -35,10 +38,10 @@ const Users = () => {
   const [userIdKeys, setUserIdKeys] = useState({});
   const [type, setType] = useState("");
   const [personName, setPersonName] = useState([]);
-  const [transData, setTransData] = useState([]);
-  const [datas, setDatas] = useState({});
 
- 
+  const [datas, setDatas] = useState({});
+  const [recipeData, setRecipeData] = useState([]);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -49,7 +52,6 @@ const Users = () => {
     setType(selectedUserName);
     getRecipeData(selectedUserIdKey);
   };
-  
 
   // Fetch user data
   const getallUserData = async () => {
@@ -82,19 +84,18 @@ const Users = () => {
     getallUserData();
   }, []);
 
-// for getting the Recipe from specificUser
-const getRecipeData = async () => {
+  // for getting the Recipe from specificUser
+  const getRecipeData = async () => {
     try {
       // Get the selected user's key
       const selectedUserKey = localStorage.getItem("selectedUserKey");
-  
-    //  console.log("selectedUserKey:",selectedUserKey)
+
+      //  console.log("selectedUserKey:",selectedUserKey)
       if (!selectedUserKey) {
         // console.log("Selected user key not found.");
         return;
       }
-  
-  
+
       let req = await axios.get(
         `https://addtastetoyourfoods.onrender.com/recipe/specificUser/${selectedUserKey}`,
         {
@@ -103,25 +104,25 @@ const getRecipeData = async () => {
           },
         }
       );
-  
+
       const { data } = req;
       // console.log("Retrieved data:", data);
       const { message, statusCode, allRecipeData } = data;
-    //   console.log("data:", data);
-      if(allRecipeData.length<=0){
+        console.log("allRecipeData:", allRecipeData);
+      if (allRecipeData.length <= 0) {
         toast.warning("No Recipe To Be Shown!", {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
       if (statusCode === 200) {
-        setTransData(allRecipeData);
+        setRecipeData(allRecipeData);
         // console.log("allRecipeData:", allRecipeData);
       } else {
         setDatas({ message });
@@ -130,7 +131,7 @@ const getRecipeData = async () => {
       console.log(error);
     }
   };
-  
+
   // console.log("personName:", personName);
   // console.log("type:", type);
   // console.log("transData:", transData);
@@ -219,34 +220,14 @@ const getRecipeData = async () => {
       </div>
       {/* ----------------------- */}
       <RecipeListContainer>
-        {transData?.length ? (
-          transData.map((transData, index) => (
-            <RecipeComponent key={index} recipe={transData} />
+        {recipeData?.length ? (
+          recipeData.map((allRecipeData, index) => (
+            <RecipeComponent key={index} recipe={allRecipeData} />
           ))
         ) : (
           <Placeholder src="/react-recipe-finder/RecipeLogo.png" />
         )}
       </RecipeListContainer>
-      
-
-      {/* <CoverImage
-        src={imageURL}
-        alt={label}
-        style={{
-          objectFit: "cover",
-          height: "200px",
-          borderRadius: "15px"
-        }}
-      />
-
-      <RecipeName>{label}</RecipeName>
-      <IngredientsText onClick={() => setShow(!show)}>
-        Ingredients
-      </IngredientsText>
-      <SeeMoreText onClick={() => window.open("https://www.youtube.com/")}>
-        See Complete Recipe
-      </SeeMoreText>
-     */}
     </div>
   );
 };

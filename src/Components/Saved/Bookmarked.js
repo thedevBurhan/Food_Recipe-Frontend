@@ -26,7 +26,7 @@ const Bookmarked = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const [transData, setTransData] = useState([]);
+  const [recipeData, setRecipeData] = useState([]);
   const [datas, setDatas] = useState({});
   // for getting the Recipe from specificUser
   const getRecipeData = async () => {
@@ -45,7 +45,7 @@ const Bookmarked = () => {
       const { message, statusCode, allRecipeData } = data;
       // console.log("data:",data);
       if (statusCode === 200) {
-        setTransData(allRecipeData);
+        setRecipeData(allRecipeData);
         // console.log("allRecipeData:",allRecipeData);
       } else {
         setDatas({ message });
@@ -136,9 +136,9 @@ const Bookmarked = () => {
           </div>
         </div>
         <RecipeListContainer>
-          {transData?.length ? (
-            transData.map((transData, index) => (
-              <MarkedComponent key={index} recipe={transData} />
+          {recipeData?.length ? (
+            recipeData.map((RecipeData, index) => (
+              <MarkedComponent key={index} recipe={RecipeData} />
             ))
           ) : (
             <Placeholder src="/react-recipe-finder/RecipeLogo.png" />
