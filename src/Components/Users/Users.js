@@ -102,7 +102,7 @@ const Users = () => {
       const { data } = req;
       // console.log("Retrieved data:", data);
       const { message, statusCode, allRecipeData } = data;
-      console.log("allRecipeData:", allRecipeData);
+      // console.log("allRecipeData:", allRecipeData);
       if (allRecipeData.length <= 0) {
         toast.warning("No Recipe To Be Shown!", {
           position: "top-right",

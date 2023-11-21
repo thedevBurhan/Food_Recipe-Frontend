@@ -31,7 +31,7 @@ const Login = () => {
       },
       validationSchema: filedValidationScheme,
       onSubmit: (userInfo) => {
-        console.log("onsubmit", userInfo);
+        // console.log("onsubmit", userInfo);
 
         handleLogin(userInfo);
       },

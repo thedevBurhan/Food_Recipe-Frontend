@@ -84,16 +84,27 @@ const RecipeComponent = (props) => {
       ? JSON.parse(storedBookmarkedRecipes)
       : [];
     // Pass the event, updatedBookmarkedRecipes, and ingredients to addRecipe
-    
-    console.log("parsedBookmarkedRecipes",parsedBookmarkedRecipes,"ingredients",ingredients)
-    addRecipe(e,label, image, calories, totalTime, ingredients);
+
+    // console.log(
+    //   "parsedBookmarkedRecipes",
+    //   parsedBookmarkedRecipes
+    // );
+    // console.log(label, image, calories, totalTime, ingredients);
+    addRecipe(e, label, image, calories, totalTime, ingredients);
   };
 
   // to add the Recipe data
-  const addRecipe = async (e,label, image, calories, totalTime, ingredients) => {
+  const addRecipe = async (
+    e,
+    label,
+    image,
+    calories,
+    totalTime,
+    ingredients
+  ) => {
     e.preventDefault();
     // console.log(window.localStorage.getItem("id"));
-    console.log(label, calories, totalTime, image,ingredients);
+    // console.log("addRecipe",label, image, calories, totalTime, ingredients);
     const formData = new FormData();
     formData.append("image", image);
     formData.append("userid", window.localStorage.getItem("id"));
@@ -102,20 +113,20 @@ const RecipeComponent = (props) => {
     formData.append("totalTime", totalTime);
 
     // Check if ingredients is defined before iterating and appending
-  if (ingredients) {
-    ingredients.forEach((ingredient, index) => {
-      formData.append(`ingredients[${index}][measure]`, ingredient.measure);
-      formData.append(`ingredients[${index}][weight]`, ingredient.weight);
-      formData.append(
-        `ingredients[${index}][foodCategory]`,
-        ingredient.foodCategory
-      );
-      formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
-      formData.append(`ingredients[${index}][text]`, ingredient.text);
-    });
-  }
-     console.log("formData",formData)
-     try {
+    if (ingredients) {
+      ingredients.forEach((ingredient, index) => {
+        formData.append(`ingredients[${index}][measure]`, ingredient.measure);
+        formData.append(`ingredients[${index}][weight]`, ingredient.weight);
+        formData.append(
+          `ingredients[${index}][foodCategory]`,
+          ingredient.foodCategory
+        );
+        formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
+        formData.append(`ingredients[${index}][text]`, ingredient.text);
+      });
+    }
+    // console.log("formData", formData);
+    try {
       const response = await axios.post(
         `https://addtastetoyourfoods.onrender.com/recipe/`,
         formData,
@@ -138,7 +149,7 @@ const RecipeComponent = (props) => {
         });
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   const handleBookmarkClickonChange = () => {
